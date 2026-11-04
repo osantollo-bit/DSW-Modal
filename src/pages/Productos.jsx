@@ -19,22 +19,25 @@ function Productos(){
 
     return(
         <main>
-            <h1>Productos</h1>
-            <Button funcion={mostrarMensaje}>Guardar</Button>
+            <h1>Inicio: botón sin children</h1>
 
+            <Button funcion={mostrarMensaje}>
+                Abrir modal
+            </Button>
 
             {mostrar && (
-                <Modal funcion={cerrarMensaje}>
-                    <h2>Mensaje</h2>
-                    <p>Se envió correctamente</p>
-
-                    <Button funcion={cerrarMensaje}>
-                        Aceptar
-                    </Button>
-                </Modal>
+                <Modal
+                    titulo="Mensaje"
+                    mensaje="El modal se abrió correctamente."
+                    textoBoton="Cerrar"
+                    funcion={cerrarMensaje}
+                />
             )}
         </main>
     )
 }
 
 export default Productos;
+
+
+

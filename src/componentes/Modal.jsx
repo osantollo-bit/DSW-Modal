@@ -1,24 +1,22 @@
-import "./modal.css"
-/*
-cerrar → recibirá la función que queremos ejecutar al presionar Aceptar.
-children → recibirá lo que queramos colocar dentro del modal.
-*/
-function Modal({children}){
-    return(
+import "./modal.css";
+
+function Modal({ titulo, mensaje, textoBoton, funcion }) {
+    return (
         <div className="modal">
             <div className="contenidoModal">
-                {children}
+                <h2>{titulo}</h2>
+
+                <p>{mensaje}</p>
+
+                <button onClick={funcion}>
+                    {textoBoton}
+                </button>
             </div>
         </div>
-    )
+    );
 }
 
 export default Modal;
 
-/*
 
-   <button onClick={funcion}>
-                    Aceptar
-                </button>
 
-*/
