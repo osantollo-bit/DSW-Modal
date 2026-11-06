@@ -6,12 +6,14 @@ import Inicio from './pages/Inicio'
 import Formulario from './pages/Formulario'
 import Productos from './pages/Productos'
 import Discos from './pages/Discos'
+import Footer from './componentes/Footer'
+import Login from './pages/Login'
 
 
 function App() {
   
   return (
-    <BrowserRouter> //Envuelve los componentes que necesitan utilizar la navegación.
+    <BrowserRouter> 
       <Header/>
 
       <Routes> //escribes todas las rutas disponibles de tu sitio.
@@ -19,7 +21,11 @@ function App() {
         <Route path='/formulario' element={<Formulario />}/>
         <Route path='/productos' element={<Productos />}/>
         <Route path='/discos' element={<Discos />}/>
+        <Route path='/login' element={<Login />} />
       </Routes>
+
+      {/* Elemento que aparece en todas las páginas */}
+      <Footer />
     </BrowserRouter>
   )
 }
