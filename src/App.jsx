@@ -8,6 +8,7 @@ import Productos from './pages/Productos'
 import Discos from './pages/Discos'
 import Footer from './componentes/Footer'
 import Login from './pages/Login'
+import Registro from './pages/Registro'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/productos' element={<Productos />}/>
         <Route path='/discos' element={<Discos />}/>
         <Route path='/login' element={<Login />} />
+        <Route path='/registro' element={<Registro/>}/>
       </Routes>
 
       {/* Elemento que aparece en todas las páginas */}

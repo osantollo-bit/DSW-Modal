@@ -1,103 +1,97 @@
+
 import { useState } from 'react'
-import ButtonChildren from "../componentes/ButtonChildren";
-import ModalChildren from "../componentes/ModalChildren";
+import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
 function Login() {
 
-    // Estados para guardar los datos
-    const [correo, setCorreo] = useState('')
-    const [contrasena, setContrasena] = useState('')
+    // HOOK PARA CAMBIAR DE PANTALLA.
+    const navigate = useNavigate()
 
-      // ESTADOS DEL MODAL
-    const [mostrar, setMostrar] = useState(false);
-    const [mensaje, setMensaje] = useState("");
+    // ESTADOS PARA GUARDAR LOS DATOS DEL INICIO DE SESIÓN.
+    const [correo, setCorreo] = useState("")
+    const [contrasena, setContrasena] = useState("")
 
-    // Función para iniciar sesión
+    // FUNCIÓN PARA INICIAR SESIÓN.
     function iniciarSesion(evento) {
 
         evento.preventDefault()
 
-        if (correo === "" || contrasena === "") {
-            
-            // Si falta información, muestra un mensaje de advertencia.
-            setMensaje("Complete todos los campos");
-        } else {
-            // Si todos los campos tienen información,
-            // muestra un mensaje de confirmación.
-            setMensaje("Se envió correctamente");
+        setCorreo("")
+        setContrasena("")
 
-            // Limpia los campos del formulario.
-            limpiarFormulario();
-        }
-
-        // Abre el modal para mostrar el mensaje.
-        setMostrar(true);
-    }
-
-      // LIMPIAR EL FORMULARIO
-    function limpiarFormulario() {
-        // Regresa los estados a su valor inicial.
-        setNombre("");
-        setCorreo("");
-        setComentario("");
-    }
-
-    // CERRAR EL MODAL
-    function cerrarMensaje() {
-        setMostrar(false);         // Cambia el estado para ocultar el modal.
+        // REDIRIGE A INICIO.
+        navigate("/")
     }
 
     return (
+
         <main className="login">
 
             <div className="login-contenedor">
 
-                <h2>Iniciar sesión</h2>
+                {/* PESTAÑAS */}
+                <div className="login-pestanas">
 
-                <form onSubmit={iniciarSesion}>
-
-                    <label>Correo electrónico</label>
-
-                    <input
-                        type="email"
-                        value={correo}
-                        onChange={(e) => setCorreo(e.target.value)}
-                        placeholder="Ingresa tu correo"
-                    />
-
-                    <label>Contraseña</label>
-
-                    <input
-                        type="password"
-                        value={contrasena}
-                        onChange={(e) => setContrasena(e.target.value)}
-                        placeholder="Ingresa tu contraseña"
-                    />
-
-                    <button type="submit">
+                    <button
+                        className="activo"
+                        onClick={() => navigate("/login")}
+                    >
                         Iniciar sesión
                     </button>
 
-                </form>
+                    <button
+                        onClick={() => navigate("/registro")}
+                    >
+                        Registrarse
+                    </button>
 
+                </div>
 
-                {/* Solo aparece cuando mostrar es true. */}
-                {mostrar && (
-                    <ModalChildren>
-                        <h2>Mensaje</h2>
-                        <p>{mensaje}</p>
+                {/* FORMULARIO DE INICIO DE SESIÓN */}
+                <div className="login-formulario">
 
-                        <ButtonChildren funcion={cerrarMensaje}>
-                            Aceptar
-                        </ButtonChildren>
-                    </ModalChildren>
-                )}
+                    <h2>Bienvenido</h2>
+
+                    <p>Inicia sesión con tu cuenta institucional</p>
+
+                    <form onSubmit={iniciarSesion}>
+
+                        <input
+                            type="email"
+                            placeholder="Correo electrónico"
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)}
+                            required
+                        />
+
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            value={contrasena}
+                            onChange={(e) => setContrasena(e.target.value)}
+                            required
+                        />
+
+                        <button type="submit">
+                            Iniciar sesión
+                        </button>
+
+                    </form>
+
+                </div>
 
             </div>
 
         </main>
+
     )
 }
 
 export default Login
+
+
+
+/*
+Los estilos de registro se muetsran,  Porque Registro se está mostrando dentro de Login.
+*/
